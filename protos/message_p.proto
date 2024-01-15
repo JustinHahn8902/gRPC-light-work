@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+service Messaging {
+	rpc SingleMessage (ClientMessage) returns (ServerMessage);
+	rpc ServerStream (ClientMessage) returns (stream ServerMessage);
+	rpc ClientStream (stream ClientMessage) returns (ServerMessage);
+	rpc TwoWayStream (stream ClientMessage) returns (stream ServerMessage);
+}
+
+message ClientMessage {
+  string name = 1;
+  string message = 2;
+}
+
+message ServerMessage {
+  string message = 1;
+}
+
